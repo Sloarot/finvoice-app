@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('title');
             $table->decimal('price', 8, 2);
             $table->decimal('vat', 8, 2)->default(0);
+            $table->decimal('total_price', 8, 2)->default(0);
             $table->date('deadline');
             $table->date('completed_at')->nullable();
             $table->foreignId('client_id')->constrained()->cascadeOnDelete();

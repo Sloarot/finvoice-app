@@ -18,6 +18,7 @@ class TranslationJobFactory extends Factory
             'title'        => $this->faker->sentence(6),
             'price'        => $this->faker->randomFloat(2, 20, 200),
             'vat'          => $this->faker->randomFloat(2, 0, 40),
+            'total_price'  => $this->faker->randomFloat(2, 0, 4000),
             'deadline'     => $this->faker->dateTimeBetween('now', '+1 year'),
             'completed_at' => $this->faker->optional()->dateTimeBetween('-6 months', 'now'),
             'client_id'    => Client::factory(),
