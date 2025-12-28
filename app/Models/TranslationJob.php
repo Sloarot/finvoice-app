@@ -14,6 +14,8 @@ class TranslationJob extends Model
         'service',
         'title',
         'price',
+        'total_price',
+        'quantity',
         'vat',
         'deadline',
         'completed_at',

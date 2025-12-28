@@ -67,7 +67,7 @@
             <div>
                 <label for="price" class="block text-sm font-medium text-gray-700 mb-2">Price</label>
                 <div class="relative">
-                    <input type="number" step="0.01" name="price" id="price"
+                    <input type="number" step="0.01" name="price" id="price" value="0.11"
                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-3 pr-8"
                         required>
                     <span class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500">€</span>
@@ -97,7 +97,21 @@
         </div>
 
         <!-- Deadline -->
-        <div class="flex-1">
+        <div class="flex-1 space-y-4">
+            <!-- Quantity -->
+            <div>
+                <label for="quantity" class="block text-sm font-medium text-gray-700 mb-2">Quantity</label>
+                <div class="flex">
+                    <input type="number" name="quantity" id="quantity"
+                        class="flex-1 rounded-l-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-3"
+                        required>
+                    <button type="button" id="min_fee"
+                        class="px-4 py-2 bg-gray-200 text-gray-700 border border-l-0 border-gray-300 rounded-none hover:bg-gray-300">Min fee</button>
+                    <button type="button" id="matches"
+                        class="px-4 py-2 bg-gray-200 text-gray-700 border border-l-0 border-gray-300 rounded-r-md hover:bg-gray-300" onclick="showModal()">Matches</button>
+                </div>
+            </div>
+
             <label for="deadline" class="block text-sm font-medium text-gray-700 mb-2">Deadline</label>
             <input type="date" name="deadline" id="deadline"
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-3"
@@ -115,6 +129,132 @@
         </button>
     </div>
 </form>
+
+<!-- Modal -->
+<div id="matches-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-white rounded-lg shadow-lg max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+        <div class="flex justify-between items-center p-6 border-b">
+            <h5 class="text-xl font-semibold">CAT CALCULATION</h5>
+            <button type="button" class="text-gray-500 hover:text-gray-700 text-2xl" onclick="hideModal()">&times;</button>
+        </div>
+        <div class="p-6">
+            <div class="grid grid-cols-12 gap-4 mb-4">
+                <div class="col-span-3 font-medium">Match type</div>
+                <div class="col-span-2 font-medium"># of words</div>
+                <div class="col-span-1 font-medium text-center">x</div>
+                <div class="col-span-2 font-medium">Percentage</div>
+                <div class="col-span-1 font-medium text-center">=</div>
+                <div class="col-span-3 font-medium">CAT calculation</div>
+            </div>
+            <hr class="mb-4">
+            <!-- Perfect Match -->
+            <div class="grid grid-cols-12 gap-4 mb-4">
+                <div class="col-span-3 flex items-center">Perfect Match</div>
+                <div class="col-span-2"><input type="number" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2" id="PMcount" placeholder="# Perf Match" oninput="calculateMatches()"></div>
+                <div class="col-span-1 flex items-center justify-center">x</div>
+                <div class="col-span-2"><input type="number" step="0.01" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2" id="PMpercentage" value="0" oninput="calculateMatches()"></div>
+                <div class="col-span-1 flex items-center justify-center">=</div>
+                <div class="col-span-3"><input type="number" step="0.01" class="w-full rounded-md border-gray-300 shadow-sm bg-gray-50 p-2" id="PMtotal" placeholder="Amount" readonly></div>
+            </div>
+            <!-- Context Match -->
+            <div class="grid grid-cols-12 gap-4 mb-4">
+                <div class="col-span-3 flex items-center">Context Match</div>
+                <div class="col-span-2"><input type="number" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2" id="CMcount" placeholder="# Context M" oninput="calculateMatches()"></div>
+                <div class="col-span-1 flex items-center justify-center">x</div>
+                <div class="col-span-2"><input type="number" step="0.01" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2" id="CMpercentage" value="0.10" oninput="calculateMatches()"></div>
+                <div class="col-span-1 flex items-center justify-center">=</div>
+                <div class="col-span-3"><input type="number" step="0.01" class="w-full rounded-md border-gray-300 shadow-sm bg-gray-50 p-2" id="CMtotal" placeholder="Amount" readonly></div>
+            </div>
+            <!-- Xtranslated -->
+            <div class="grid grid-cols-12 gap-4 mb-4">
+                <div class="col-span-3 flex items-center">Xtranslated</div>
+                <div class="col-span-2"><input type="number" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2" id="Xcount" placeholder="# Xmatch" oninput="calculateMatches()"></div>
+                <div class="col-span-1 flex items-center justify-center">x</div>
+                <div class="col-span-2"><input type="number" step="0.01" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2" id="Xpercentage" value="0.10" oninput="calculateMatches()"></div>
+                <div class="col-span-1 flex items-center justify-center">=</div>
+                <div class="col-span-3"><input type="number" step="0.01" class="w-full rounded-md border-gray-300 shadow-sm bg-gray-50 p-2" id="Xtotal" placeholder="Amount" readonly></div>
+            </div>
+            <!-- Repetitions -->
+            <div class="grid grid-cols-12 gap-4 mb-4">
+                <div class="col-span-3 flex items-center">Repetitions</div>
+                <div class="col-span-2"><input type="number" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2" id="Repcount" placeholder="# Reps" oninput="calculateMatches()"></div>
+                <div class="col-span-1 flex items-center justify-center">x</div>
+                <div class="col-span-2"><input type="number" step="0.01" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2" id="Reppercentage" value="0.10" oninput="calculateMatches()"></div>
+                <div class="col-span-1 flex items-center justify-center">=</div>
+                <div class="col-span-3"><input type="number" step="0.01" class="w-full rounded-md border-gray-300 shadow-sm bg-gray-50 p-2" id="Reptotal" placeholder="Amount" readonly></div>
+            </div>
+            <!-- 100% Match -->
+            <div class="grid grid-cols-12 gap-4 mb-4">
+                <div class="col-span-3 flex items-center">100% Match</div>
+                <div class="col-span-2"><input type="number" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2" id="count100" placeholder="# 100% Match" oninput="calculateMatches()"></div>
+                <div class="col-span-1 flex items-center justify-center">x</div>
+                <div class="col-span-2"><input type="number" step="0.01" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2" id="percentage100" value="0.15" oninput="calculateMatches()"></div>
+                <div class="col-span-1 flex items-center justify-center">=</div>
+                <div class="col-span-3"><input type="number" step="0.01" class="w-full rounded-md border-gray-300 shadow-sm bg-gray-50 p-2" id="total100" placeholder="Amount" readonly></div>
+            </div>
+            <!-- 95%-99% Match -->
+            <div class="grid grid-cols-12 gap-4 mb-4">
+                <div class="col-span-3 flex items-center">95%-99% Match</div>
+                <div class="col-span-2"><input type="number" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2" id="count95" placeholder="# 95%-99%" oninput="calculateMatches()"></div>
+                <div class="col-span-1 flex items-center justify-center">x</div>
+                <div class="col-span-2"><input type="number" step="0.01" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2" id="percentage95" value="0.20" oninput="calculateMatches()"></div>
+                <div class="col-span-1 flex items-center justify-center">=</div>
+                <div class="col-span-3"><input type="number" step="0.01" class="w-full rounded-md border-gray-300 shadow-sm bg-gray-50 p-2" id="total95" placeholder="Amount" readonly></div>
+            </div>
+            <!-- 85%-94% Match -->
+            <div class="grid grid-cols-12 gap-4 mb-4">
+                <div class="col-span-3 flex items-center">85%-94% Match</div>
+                <div class="col-span-2"><input type="number" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2" id="count85" placeholder="# 85%-94%" oninput="calculateMatches()"></div>
+                <div class="col-span-1 flex items-center justify-center">x</div>
+                <div class="col-span-2"><input type="number" step="0.01" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2" id="percentage85" value="0.40" oninput="calculateMatches()"></div>
+                <div class="col-span-1 flex items-center justify-center">=</div>
+                <div class="col-span-3"><input type="number" step="0.01" class="w-full rounded-md border-gray-300 shadow-sm bg-gray-50 p-2" id="total85" placeholder="Amount" readonly></div>
+            </div>
+            <!-- 75%-84% Match -->
+            <div class="grid grid-cols-12 gap-4 mb-4">
+                <div class="col-span-3 flex items-center">75%-84% Match</div>
+                <div class="col-span-2"><input type="number" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2" id="count75" placeholder="# 75%-84%" oninput="calculateMatches()"></div>
+                <div class="col-span-1 flex items-center justify-center">x</div>
+                <div class="col-span-2"><input type="number" step="0.01" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2" id="percentage75" value="0.60" oninput="calculateMatches()"></div>
+                <div class="col-span-1 flex items-center justify-center">=</div>
+                <div class="col-span-3"><input type="number" step="0.01" class="w-full rounded-md border-gray-300 shadow-sm bg-gray-50 p-2" id="total75" placeholder="Amount" readonly></div>
+            </div>
+            <!-- 50%-74% Match -->
+            <div class="grid grid-cols-12 gap-4 mb-4">
+                <div class="col-span-3 flex items-center">50%-74% Match</div>
+                <div class="col-span-2"><input type="number" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2" id="count50" placeholder="# 50%-74%" oninput="calculateMatches()"></div>
+                <div class="col-span-1 flex items-center justify-center">x</div>
+                <div class="col-span-2"><input type="number" step="0.01" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2" id="percentage50" value="1.00" oninput="calculateMatches()"></div>
+                <div class="col-span-1 flex items-center justify-center">=</div>
+                <div class="col-span-3"><input type="number" step="0.01" class="w-full rounded-md border-gray-300 shadow-sm bg-gray-50 p-2" id="total50" placeholder="Amount" readonly></div>
+            </div>
+            <!-- No Match -->
+            <div class="grid grid-cols-12 gap-4 mb-4">
+                <div class="col-span-3 flex items-center">No Match</div>
+                <div class="col-span-2"><input type="number" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2" id="numberofCATwords" placeholder="# No match" oninput="calculateMatches()"></div>
+                <div class="col-span-1 flex items-center justify-center">x</div>
+                <div class="col-span-2"><input type="number" step="0.01" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2" id="priceperCATword" value="1.00" oninput="calculateMatches()"></div>
+                <div class="col-span-1 flex items-center justify-center">=</div>
+                <div class="col-span-3"><input type="number" step="0.01" class="w-full rounded-md border-gray-300 shadow-sm bg-gray-50 p-2" id="CATtotal" placeholder="Amount" readonly></div>
+            </div>
+            <hr class="mb-4">
+            <!-- Total -->
+            <div class="grid grid-cols-12 gap-4">
+                <div class="col-span-3"></div>
+                <div class="col-span-2"></div>
+                <div class="col-span-1"></div>
+                <div class="col-span-2 flex items-center justify-end font-medium">TOTAL:</div>
+                <div class="col-span-1 flex items-center justify-center">=</div>
+                <div class="col-span-3"><input type="number" step="0.01" class="w-full rounded-md border-gray-300 shadow-sm bg-gray-100 p-2 font-semibold" id="Endtotal" placeholder="Amount" readonly></div>
+            </div>
+        </div>
+        <div class="flex justify-end space-x-4 p-6 border-t">
+            <button type="button" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400" onclick="hideModal()">Close</button>
+            <button type="button" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700" onclick="saveAndClose()">Save changes</button>
+        </div>
+    </div>
+</div>
+
    <!-- Calculator -->
     <div class="border-t pt-6 mt-6">
         <h2 class="text-xl font-semibold text-gray-800 mb-4">Price Calculator</h2>
@@ -160,6 +300,69 @@ document.addEventListener('DOMContentLoaded', function() {
 
     PoInput.addEventListener('input', calculate);
     rateSelect.addEventListener('change', calculate);
+
+    document.getElementById('min_fee').addEventListener('click', function() {
+        document.getElementById('quantity').value = 1;
+        document.getElementById('total_price').value = 40;
+    });
+
+    // Modal functions
+    const matches = [
+        { countId: 'PMcount', percId: 'PMpercentage', totalId: 'PMtotal' },
+        { countId: 'CMcount', percId: 'CMpercentage', totalId: 'CMtotal' },
+        { countId: 'Xcount', percId: 'Xpercentage', totalId: 'Xtotal' },
+        { countId: 'Repcount', percId: 'Reppercentage', totalId: 'Reptotal' },
+        { countId: 'count100', percId: 'percentage100', totalId: 'total100' },
+        { countId: 'count95', percId: 'percentage95', totalId: 'total95' },
+        { countId: 'count85', percId: 'percentage85', totalId: 'total85' },
+        { countId: 'count75', percId: 'percentage75', totalId: 'total75' },
+        { countId: 'count50', percId: 'percentage50', totalId: 'total50' },
+        { countId: 'numberofCATwords', percId: 'priceperCATword', totalId: 'CATtotal' },
+    ];
+
+    window.showModal = function() {
+        document.getElementById('matches-modal').classList.remove('hidden');
+    };
+
+    window.hideModal = function() {
+        document.getElementById('matches-modal').classList.add('hidden');
+    };
+
+    window.calculateMatches = function() {
+        matches.forEach(match => {
+            const count = parseFloat(document.getElementById(match.countId).value) || 0;
+            const perc = parseFloat(document.getElementById(match.percId).value) || 0;
+            const total = count * perc;
+            document.getElementById(match.totalId).value = total.toFixed(2);
+        });
+        calculateTotal();
+    };
+
+    function calculateTotal() {
+        let total = 0;
+        matches.forEach(match => {
+            total += parseFloat(document.getElementById(match.totalId).value) || 0;
+        });
+        document.getElementById('Endtotal').value = total.toFixed(2);
+    }
+
+    window.saveAndClose = function() {
+        const total = document.getElementById('Endtotal').value;
+        document.getElementById('quantity').value = total;
+        hideModal();
+    };
+
+    function calculateJobTotal() {
+        const price = parseFloat(document.getElementById('price').value) || 0;
+        const quantity = parseFloat(document.getElementById('quantity').value) || 0;
+        const vat = parseFloat(document.getElementById('vat').value) || 0;
+        const total = (price * quantity) + vat;
+        document.getElementById('total_price').value = total.toFixed(2);
+    }
+
+    document.getElementById('price').addEventListener('input', calculateJobTotal);
+    document.getElementById('quantity').addEventListener('input', calculateJobTotal);
+    document.getElementById('vat').addEventListener('input', calculateJobTotal);
 });
 </script>
 @endsection

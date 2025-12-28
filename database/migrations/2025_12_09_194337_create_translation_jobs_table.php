@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('po_number')->unique();
             $table->string('service');
             $table->string('title');
+            $table->decimal('quantity', 8, 2);
             $table->decimal('price', 8, 2);
             $table->decimal('vat', 8, 2)->default(0);
             $table->decimal('total_price', 8, 2)->default(0);

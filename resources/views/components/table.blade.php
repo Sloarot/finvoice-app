@@ -1,7 +1,7 @@
 @props(['headers', 'rows'])
 
 <table class="w-full table-auto border-collapse">
-    <thead class="bg-[#BFA2C5] text-white">
+    <thead class="bg-[#702963] text-white">
         <tr>
             @foreach($headers as $header)
                 <th class="p-3 text-left">{{ $header }}</th>
@@ -12,7 +12,7 @@
        @foreach($rows as $row)
     <tr>
         @foreach($row as $index => $cell)
-            <td class="px-4 py-2">
+            <td class="px-3 py-2">
                 @if($index === count($headers) - 1)
                     {{-- Last column = Actions --}}
                     {!! $cell !!}

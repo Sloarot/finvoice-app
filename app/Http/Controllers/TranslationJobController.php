@@ -26,6 +26,8 @@ class TranslationJobController extends Controller
             'service' => 'required|string|max:255',
             'title' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
+            'quantity' => 'required|numeric|min:0',
+            'total_price' => 'required|numeric|min:0',
             'vat' => 'nullable|numeric|min:0',
             'deadline' => 'required|date|after:today',
             'client_id' => 'required|exists:clients,id',

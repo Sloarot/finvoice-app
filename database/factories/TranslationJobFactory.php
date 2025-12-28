@@ -16,6 +16,7 @@ class TranslationJobFactory extends Factory
             'po_number'    => strtoupper($this->faker->bothify('PO-####-???')),
             'service'      => $this->faker->randomElement(['Translation EN-NL', 'Translation FR-NL', 'Translation DE-EN']),
             'title'        => $this->faker->sentence(6),
+            'quantity'     => $this->faker->numberBetween(1, 12500),
             'price'        => $this->faker->randomFloat(2, 20, 200),
             'vat'          => $this->faker->randomFloat(2, 0, 40),
             'total_price'  => $this->faker->randomFloat(2, 0, 4000),
