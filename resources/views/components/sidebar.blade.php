@@ -1,11 +1,11 @@
 <div class="w-64 bg-[#702963] text-white shrink-0">
-    <div class="p-6 text-xl font-bold">FINTRASC</div>
-    <nav class="space-y-4 px-6">
-        <a href="{{ route('translation-jobs.create') }}" class="flex items-center gap-5 hover:text-purple-200">
-        <i class="fa-solid fa-plus w-10 fa-2x"></i>
-        <span>Enter new job</span>
+    <div class="p-6 flex justify-center"><img src="{{ asset('images/logo3.png') }}" alt="FINTRASC" class="h-16 w-auto"></div>
+    <nav class="space-y-5 px-9 mt-8">
+        <a href="{{ route('translation-jobs.create') }}" class="flex items-center gap-8 uppercase hover:text-yellow-400 text-xl">
+        <i class="fa-solid fa-plus-square w-10 fa-2x"></i>
+        <span>New job</span>
     </a>
-    <a href="{{ route('translation-jobs.index') }}" class="flex items-center gap-5 hover:text-purple-200">
+    <a href="{{ route('translation-jobs.index') }}" class="flex items-center gap-8 uppercase hover:text-yellow-400 text-xl">
         <i class="fa-solid fa-list w-10 fa-2x"></i>
         <span>Overview</span>
     </a>

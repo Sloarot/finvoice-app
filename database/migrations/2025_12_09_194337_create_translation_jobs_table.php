@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('translation_jobs', function (Blueprint $table) {
             $table->id();
-
-
             $table->string('po_number')->unique();
             $table->string('service');
             $table->string('title');

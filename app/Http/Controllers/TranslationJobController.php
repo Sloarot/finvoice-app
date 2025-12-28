@@ -29,7 +29,7 @@ class TranslationJobController extends Controller
             'quantity' => 'required|numeric|min:0',
             'total_price' => 'required|numeric|min:0',
             'vat' => 'nullable|numeric|min:0',
-            'deadline' => 'required|date|after:today',
+            'deadline' => 'required|date|after_or_equal:today',
             'client_id' => 'required|exists:clients,id',
         ]);
 

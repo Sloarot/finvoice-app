@@ -1,7 +1,7 @@
 @extends('components.layout')
 
 @section('title', 'Create Translation Job')
-@section('page_title', 'Create a New Translation Job')
+{{-- @section('page_title', 'Create a New Translation Job') --}}
 
 @section('content')
 <div class="max-w-4xl mx-auto py-6">
@@ -19,6 +19,7 @@
                 <option value="{{ $client->id }}">{{ $client->name }}</option>
             @endforeach
         </select>
+        @error('client_id') <span class="text-red-500">{{ $errors->first('client_id') }}</span> @enderror
     </div>
 
 
@@ -40,6 +41,7 @@
             <option value="Translation PT-NL">Translation PT-NL</option>
             <option value="Revision PT-NL">Revision PT-NL</option>
         </select>
+        @error('service') <span class="text-red-500">{{ $errors->first('service') }}</span> @enderror
     </div>
 
      <!-- PO Number -->
@@ -48,6 +50,7 @@
         <input type="text" name="po_number" id="po_number"
             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-4"
             required>
+        @error('po_number') <span class="text-red-500">{{ $errors->first('po_number') }}</span> @enderror
     </div>
 
 
@@ -57,6 +60,7 @@
         <input type="text" name="title" id="title"
             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-4"
             required>
+        @error('title') <span class="text-red-500">{{ $errors->first('title') }}</span> @enderror
     </div>
 
     <!-- Pricing and Deadline Section -->
@@ -72,6 +76,7 @@
                         required>
                     <span class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500">€</span>
                 </div>
+                @error('price') <span class="text-red-500">{{ $errors->first('price') }}</span> @enderror
             </div>
 
             <!-- VAT -->
@@ -83,16 +88,18 @@
                         value="0">
                     <span class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500">€</span>
                 </div>
+                @error('vat') <span class="text-red-500">{{ $errors->first('vat') }}</span> @enderror
             </div>
 
             <!-- Job Total -->
             <div>
                 <label for="total_price" class="block text-sm font-medium text-gray-700 mb-2">Job Total</label>
                 <div class="relative">
-                    <input type="number" step="0.01" name="total_price" id="total_price"
+                    <input type="number" step="0.01" name="total_price" id="total_price" required
                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-3 pr-8">
                     <span class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500">€</span>
                 </div>
+                @error('total_price') <span class="text-red-500">{{ $errors->first('total_price') }}</span> @enderror
             </div>
         </div>
 
@@ -110,12 +117,14 @@
                     <button type="button" id="matches"
                         class="px-4 py-2 bg-gray-200 text-gray-700 border border-l-0 border-gray-300 rounded-r-md hover:bg-gray-300" onclick="showModal()">Matches</button>
                 </div>
+                @error('quantity') <span class="text-red-500">{{ $errors->first('quantity') }}</span> @enderror
             </div>
 
             <label for="deadline" class="block text-sm font-medium text-gray-700 mb-2">Deadline</label>
             <input type="date" name="deadline" id="deadline"
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-3"
                 required>
+            @error('deadline') <span class="text-red-500">{{ $errors->first('deadline') }}</span> @enderror
         </div>
     </div>
 
@@ -124,7 +133,7 @@
     <!-- Submit -->
     <div class="pt-6 text-right">
         <button type="submit"
-            class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700">
+            class="px-6 py-3 bg-[#702963] text-white font-semibold rounded-md hover:bg-blue-700">
             Add Job
         </button>
     </div>
@@ -250,7 +259,7 @@
         </div>
         <div class="flex justify-end space-x-4 p-6 border-t">
             <button type="button" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400" onclick="hideModal()">Close</button>
-            <button type="button" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700" onclick="saveAndClose()">Save changes</button>
+            <button type="button" class="px-4 py- bg-[#702963] text-white rounded-md hover:bg-blue-700" onclick="saveAndClose()">Save changes</button>
         </div>
     </div>
 </div>
