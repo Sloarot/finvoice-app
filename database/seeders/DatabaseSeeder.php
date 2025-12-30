@@ -24,8 +24,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        /// Seed 50 clients
-        $clients = Client::factory()->count(15)->create();
+        /// Seed 25 clients
+        $clients = Client::factory()->count(25)->create();
 
         // Seed 200 translation jobs linked to random clients
         TranslationJob::factory()->count(200)->make()->each(function ($job) use ($clients) {

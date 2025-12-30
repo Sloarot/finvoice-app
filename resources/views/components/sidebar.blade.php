@@ -9,8 +9,12 @@
         <i class="fa-solid fa-list w-10 fa-2x"></i>
         <span>Overview</span>
     </a>
+    <a href="{{ route('clients.index') }}" class="flex items-center gap-8 uppercase hover:text-yellow-400 text-xl">
+        <i class="fa-solid fa-address-card  w-10 fa-2x"></i>
+        <span>Clients</span>
+    </a>
         {{-- <a href="{{ route('invoices.index') }}" class="block hover:text-purple-200">Invoices</a>
-        <a href="{{ route('clients.index') }}" class="block hover:text-purple-200">Clients</a>
+
         <a href="{{ route('stats.index') }}" class="block hover:text-purple-200">Stats</a> --}}
     </nav>
 </div>

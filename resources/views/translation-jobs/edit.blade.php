@@ -17,7 +17,7 @@
             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-4"
             required>
             @foreach($clients as $client)
-                <option value="{{ $client->id }}" {{ $translation_job->client_id == $client->id ? 'selected' : '' }}>{{ $client->name }}</option>
+                <option value="{{ $client->id }}" {{ $translation_job->client_id == $client->id ? 'selected' : '' }}>{{ $client->client_name }}</option>
             @endforeach
         </select>
         @error('client_id') <span class="text-red-500">{{ $errors->first('client_id') }}</span> @enderror

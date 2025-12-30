@@ -8,7 +8,7 @@
         :headers="['PO#', 'Client', 'Service', 'Job Title', 'Price', 'VAT', 'Total Price','Deadline', 'Completion', 'Actions']"
         :rows="$jobs->map(fn($job) => [
             $job->po_number,
-            $job->client->name,
+            $job->client->client_name,
             $job->service,
             $job->title,
             '€' . number_format($job->price, 2),

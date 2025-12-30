@@ -9,7 +9,16 @@ class Client extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'email', 'company', 'vat_number'];
+    protected $fillable = [
+        'client_name',
+        'client_address',
+        'postal_code',
+        'city',
+        'invoice_email',
+        'vat_number',
+        'contact_person',
+        'country'
+    ];
 
     public function translationJobs()
     {
