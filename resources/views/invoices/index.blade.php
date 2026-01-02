@@ -24,6 +24,6 @@
 
     {{-- New Invoice Button --}}
     <div class="mt-4">
-        <a href="{{ route('invoices.create') }}" class="bg-[#702963] text-white px-4 py-2 rounded hover:bg-[#5a1f4f]">New Invoice</a>
+        <a href="{{ route('invoices.preview') }}" class="bg-[#702963] text-white px-4 py-2 rounded hover:bg-[#5a1f4f]">New Invoice</a>
     </div>
 @endsection

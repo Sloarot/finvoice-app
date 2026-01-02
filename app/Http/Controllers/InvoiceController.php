@@ -6,6 +6,7 @@ use App\Models\Invoice;
 use App\Models\Client;
 use App\Models\TranslationJob;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class InvoiceController extends Controller
 {
@@ -144,5 +145,123 @@ class InvoiceController extends Controller
         $invoice->delete();
 
         return redirect()->route('invoices.index')->with('success', 'Invoice deleted successfully.');
+    }
+
+    /**
+     * Show the preview page for creating an invoice.
+     */
+    public function preview()
+    {
+        $clients = Client::orderBy('client_name')->get();
+        $translationJobs = TranslationJob::whereNull('is_on_invoice')
+            ->with('client')
+            ->orderBy('deadline')
+            ->get();
+
+        return view('invoices.preview', compact('clients', 'translationJobs'));
+    }
+
+    /**
+     * Preview the PDF template in the browser for styling purposes.
+     */
+    public function pdfPreview()
+    {
+        // Get a random client with translation jobs
+        $client = Client::has('translationJobs')->inRandomOrder()->first();
+
+        if (!$client) {
+            return redirect()->route('invoices.index')->with('error', 'No clients with translation jobs found. Please seed the database first.');
+        }
+
+        // Get some translation jobs for this client (limit to 10 for preview)
+        $translationJobs = TranslationJob::where('client_id', $client->id)
+            ->whereNull('is_on_invoice')
+            ->orderBy('deadline')
+            ->limit(10)
+            ->get();
+
+        if ($translationJobs->isEmpty()) {
+            return redirect()->route('invoices.index')->with('error', 'No available translation jobs found for preview.');
+        }
+
+        // Calculate totals
+        $invoiceNet = $translationJobs->sum('total_price');
+        $invoiceVat = $invoiceNet * 0.21;
+        $invoiceTotal = $invoiceNet + $invoiceVat;
+
+        // Prepare data for PDF preview
+        $data = [
+            'client' => $client,
+            'translationJobs' => $translationJobs,
+            'invoiceNumber' => 'INV-2026-PREVIEW',
+            'invoiceNet' => $invoiceNet,
+            'invoiceVat' => $invoiceVat,
+            'invoiceTotal' => $invoiceTotal,
+            'extraInfo' => 'This is a preview invoice for styling purposes',
+        ];
+
+        // Return the view directly (no PDF generation)
+        return view('invoices.pdf', $data);
+    }
+
+    /**
+     * Generate PDF for the invoice.
+     */
+    public function generatePdf(Request $request)
+    {
+        $request->validate([
+            'client_id' => 'required|exists:clients,id',
+            'translation_jobs' => 'required|array|min:1',
+            'translation_jobs.*' => 'exists:translation_jobs,id',
+            'invoice_net' => 'required|numeric|min:0',
+            'invoice_vat' => 'required|numeric|min:0',
+            'invoice_total' => 'required|numeric|min:0',
+        ]);
+
+        // Get client and translation jobs
+        $client = Client::findOrFail($request->client_id);
+        $translationJobs = TranslationJob::whereIn('id', $request->translation_jobs)
+            ->orderBy('deadline')
+            ->get();
+
+        // Generate invoice number (format: INV-YYYY-XXXX)
+        $year = now()->year;
+        $lastInvoice = Invoice::where('invoice_number', 'like', "INV-{$year}-%")
+            ->orderBy('invoice_number', 'desc')
+            ->first();
+
+        if ($lastInvoice) {
+            $lastNumber = (int) substr($lastInvoice->invoice_number, -4);
+            $newNumber = str_pad($lastNumber + 1, 4, '0', STR_PAD_LEFT);
+        } else {
+            $newNumber = '0001';
+        }
+
+        $invoiceNumber = "INV-{$year}-{$newNumber}";
+
+        // Prepare data for PDF
+        $data = [
+            'client' => $client,
+            'translationJobs' => $translationJobs,
+            'invoiceNumber' => $invoiceNumber,
+            'invoiceNet' => $request->invoice_net,
+            'invoiceVat' => $request->invoice_vat,
+            'invoiceTotal' => $request->invoice_total,
+            'extraInfo' => $request->extra_info ?? null,
+        ];
+
+        // Generate PDF
+        $pdf = Pdf::loadView('invoices.pdf', $data);
+        $pdf->setPaper('A4', 'portrait');
+
+        // Set options for better rendering
+        $pdf->setOptions([
+            'isHtml5ParserEnabled' => true,
+            'isRemoteEnabled' => true,
+            'defaultFont' => 'DejaVu Sans',
+        ]);
+
+        // Display PDF in browser
+        return $pdf->stream("invoice_{$invoiceNumber}.pdf");
     }
 }

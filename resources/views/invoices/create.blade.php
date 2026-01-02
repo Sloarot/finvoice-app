@@ -8,6 +8,10 @@
     <form action="{{ route('invoices.store') }}" method="POST" class="bg-white shadow-md rounded-lg p-8">
     @csrf
 
+    @php
+        $previewData = session('preview_data', []);
+    @endphp
+
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- Client -->
         <div class="md:col-span-2">
@@ -17,7 +21,8 @@
                 required>
                 <option value="">Select a client</option>
                 @foreach($clients as $client)
-                    <option value="{{ $client->id }}" {{ old('client_id') == $client->id ? 'selected' : '' }}>
+                    <option value="{{ $client->id }}"
+                        {{ (old('client_id', $previewData['client_id'] ?? '') == $client->id) ? 'selected' : '' }}>
                         {{ $client->client_name }}
                     </option>
                 @endforeach
@@ -46,7 +51,8 @@
         <!-- Invoice Net -->
         <div>
             <label for="invoice_net" class="block text-sm font-medium text-gray-700 mb-2">Net Amount (€)</label>
-            <input type="number" name="invoice_net" id="invoice_net" value="{{ old('invoice_net') }}" step="0.01" min="0"
+            <input type="number" name="invoice_net" id="invoice_net"
+                value="{{ old('invoice_net', $previewData['invoice_net'] ?? '') }}" step="0.01" min="0"
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-4"
                 required>
             @error('invoice_net') <span class="text-red-500">{{ $errors->first('invoice_net') }}</span> @enderror
@@ -55,7 +61,8 @@
         <!-- Invoice VAT -->
         <div>
             <label for="invoice_vat" class="block text-sm font-medium text-gray-700 mb-2">VAT Amount (€)</label>
-            <input type="number" name="invoice_vat" id="invoice_vat" value="{{ old('invoice_vat') }}" step="0.01" min="0"
+            <input type="number" name="invoice_vat" id="invoice_vat"
+                value="{{ old('invoice_vat', $previewData['invoice_vat'] ?? '') }}" step="0.01" min="0"
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-4"
                 required>
             @error('invoice_vat') <span class="text-red-500">{{ $errors->first('invoice_vat') }}</span> @enderror
@@ -64,7 +71,8 @@
         <!-- Invoice Total -->
         <div>
             <label for="invoice_total" class="block text-sm font-medium text-gray-700 mb-2">Total Amount (€)</label>
-            <input type="number" name="invoice_total" id="invoice_total" value="{{ old('invoice_total') }}" step="0.01" min="0"
+            <input type="number" name="invoice_total" id="invoice_total"
+                value="{{ old('invoice_total', $previewData['invoice_total'] ?? '') }}" step="0.01" min="0"
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-4"
                 required>
             @error('invoice_total') <span class="text-red-500">{{ $errors->first('invoice_total') }}</span> @enderror
@@ -88,7 +96,7 @@
                         <input type="checkbox" name="translation_jobs[]" value="{{ $job->id }}"
                             id="job_{{ $job->id }}"
                             class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                            {{ in_array($job->id, old('translation_jobs', [])) ? 'checked' : '' }}>
+                            {{ in_array($job->id, old('translation_jobs', $previewData['translation_jobs'] ?? [])) ? 'checked' : '' }}>
                         <label for="job_{{ $job->id }}" class="ml-2 text-sm text-gray-700">
                             {{ $job->po_number }} - {{ $job->title }} ({{ $job->client->client_name }}) - €{{ number_format($job->total_price, 2) }}
                         </label>

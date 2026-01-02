@@ -73,4 +73,13 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('clients', ClientController::class);
 Route::resource('translation-jobs', TranslationJobController::class);
+
+// Invoice routes with custom preview and PDF generation
+Route::get('invoices/preview', [InvoiceController::class, 'preview'])->name('invoices.preview');
+// Route::get('invoices/pdf-preview', [InvoiceController::class, 'pdfPreview'])->name('invoices.pdfPreview');
+Route::get('/invoice-preview/{id}', function ($id) {
+    $invoice = Invoice::with('translationJobs')->findOrFail($id);
+    return view('invoices.preview', compact('invoice'));
+});
+Route::post('invoices/generate-pdf', [InvoiceController::class, 'generatePdf'])->name('invoices.generatePdf');
 Route::resource('invoices', InvoiceController::class);

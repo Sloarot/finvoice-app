@@ -25,19 +25,27 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        // Seed 25 clients
-        $clients = Client::factory()->count(25)->create();
+        // Seed 10-15 clients (we'll do 12 for a good middle ground)
+        $clientCount = rand(10, 15);
+        $clients = Client::factory()->count($clientCount)->create();
 
-        // Seed 200 translation jobs linked to random clients
-        $translationJobs = TranslationJob::factory()->count(200)->make()->map(function ($job) use ($clients) {
-            $job->client_id = $clients->random()->id;
-            $job->save();
-            return $job;
+        // For each client, create approximately 50 translation jobs that are NOT on invoices yet
+        $allJobs = collect();
+        $clients->each(function ($client) use (&$allJobs) {
+            // Create 48-52 jobs per client (randomized around 50)
+            $jobCount = rand(48, 52);
+            $jobs = TranslationJob::factory()->count($jobCount)->create([
+                'client_id' => $client->id,
+                'invoice_id' => null,
+                'is_on_invoice' => null,
+            ]);
+            $allJobs = $allJobs->merge($jobs);
         });
 
-        // Create 20 invoices and assign 10% of translation jobs to them
-        $invoiceCount = 20;
-        $jobsToInvoice = $translationJobs->random((int) ($translationJobs->count() * 0.1));
+        // Optionally create a few invoices with some jobs (to show that the system works)
+        // But keep most jobs available for invoicing
+        $invoiceCount = 5;
+        $jobsToInvoice = $allJobs->random(min(50, (int)($allJobs->count() * 0.08))); // Only 8% of jobs
 
         $invoices = collect();
         for ($i = 0; $i < $invoiceCount; $i++) {
