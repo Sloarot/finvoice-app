@@ -20,10 +20,17 @@ class TranslationJob extends Model
         'deadline',
         'completed_at',
         'client_id',
+        'invoice_id',
+        'is_on_invoice',
     ];
 
     public function client()
     {
         return $this->belongsTo(Client::class);
+    }
+
+    public function invoice()
+    {
+        return $this->belongsTo(Invoice::class);
     }
 }

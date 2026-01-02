@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\TranslationJobController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
@@ -72,3 +73,4 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('clients', ClientController::class);
 Route::resource('translation-jobs', TranslationJobController::class);
+Route::resource('invoices', InvoiceController::class);

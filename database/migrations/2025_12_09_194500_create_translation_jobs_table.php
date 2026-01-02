@@ -23,6 +23,8 @@ return new class extends Migration
             $table->date('deadline');
             $table->date('completed_at')->nullable();
             $table->foreignId('client_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('invoice_id')->nullable()->constrained()->nullOnDelete();
+            $table->integer('is_on_invoice')->nullable();
             $table->timestamps();
         });
     }
