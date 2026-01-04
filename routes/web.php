@@ -5,6 +5,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\TranslationJobController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -73,6 +74,12 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('clients', ClientController::class);
 Route::resource('translation-jobs', TranslationJobController::class);
+
+// Chart routes
+Route::get('/charts', [ChartController::class, 'index'])->name('chart')->middleware('auth');
+Route::get('/api/charts/monthly-invoices', [ChartController::class, 'monthlyInvoices'])->name('api.charts.monthly')->middleware('auth');
+Route::get('/api/charts/yearly-total', [ChartController::class, 'yearlyTotal'])->name('api.charts.yearly')->middleware('auth');
+Route::get('/api/charts/top-clients', [ChartController::class, 'topClients'])->name('api.charts.clients')->middleware('auth');
 
 // Invoice routes with custom preview and PDF generation
 Route::get('invoices/preview', [InvoiceController::class, 'preview'])->name('invoices.preview');

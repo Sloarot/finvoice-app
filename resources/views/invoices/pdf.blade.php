@@ -371,7 +371,7 @@
         <div class="totals-section no-break">
             <table class="totals-table">
                 <tr>
-                    <td class="label-cell">TOTAL JOBS (in EUR):</td>
+                    <td class="label-cell">SUBTOTAL JOBS (in EUR):</td>
                     <td class="amount-cell">{{ number_format($invoiceNet, 2, ',', '.') }}</td>
                 </tr>
                 @if($invoiceVat > 0)

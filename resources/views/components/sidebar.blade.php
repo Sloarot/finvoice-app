@@ -17,8 +17,9 @@
         <i class="fa-solid fa-file-lines w-10 fa-2x"></i>
         <span>Invoices</span>
     </a>
-        {{-- <a href="{{ route('invoices.index') }}" class="block hover:text-purple-200">Invoices</a>
-
-        <a href="{{ route('stats.index') }}" class="block hover:text-purple-200">Stats</a> --}}
+     <a href="{{ route('chart') }}" class="flex items-center gap-8 uppercase hover:text-yellow-400 text-xl">
+        <i class="fa-solid fa-chart-line w-10 fa-2x"></i>
+        <span>Charts</span>
+    </a>
     </nav>
 </div>
