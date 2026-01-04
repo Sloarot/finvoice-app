@@ -216,6 +216,7 @@ class InvoiceController extends Controller
             'invoice_net' => 'required|numeric|min:0',
             'invoice_vat' => 'required|numeric|min:0',
             'invoice_total' => 'required|numeric|min:0',
+            'extra_info' => 'nullable|string',
         ]);
 
         // Get client and translation jobs
@@ -261,7 +262,10 @@ class InvoiceController extends Controller
             'defaultFont' => 'DejaVu Sans',
         ]);
 
-        // Display PDF in browser
-        return $pdf->stream("invoice_{$invoiceNumber}.pdf");
+        // Display PDF in browser (inline = opens in new tab instead of download)
+        return response($pdf->output(), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="invoice_' . $invoiceNumber . '.pdf"',
+        ]);
     }
 }

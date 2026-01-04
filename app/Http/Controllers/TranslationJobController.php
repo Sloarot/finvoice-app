@@ -60,6 +60,7 @@ class TranslationJobController extends Controller
             'total_price' => 'required|numeric|min:0',
             'vat' => 'nullable|numeric|min:0',
             'deadline' => 'required|date|after_or_equal:today',
+            'completed_at' => 'nullable|date',
             'client_id' => 'required|exists:clients,id',
         ]);
 

@@ -21,6 +21,17 @@
             </select>
         </div>
 
+        <!-- Additional Information -->
+        <div class="mb-6">
+            <label for="extra_info" class="block text-sm font-medium text-gray-700 mb-2">
+                Additional Information (Optional)
+            </label>
+            <textarea id="extra_info" rows="3"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-4"
+                placeholder="Enter any additional information or PRE-INVOICE NR..."></textarea>
+            <p class="mt-1 text-sm text-gray-500">This information will appear on the invoice PDF</p>
+        </div>
+
         <!-- Translation Jobs Table -->
         <div id="jobs-container" class="mb-6 hidden">
             <h3 class="text-lg font-semibold mb-4">Available Translation Jobs</h3>
@@ -175,12 +186,12 @@
         let totalVat = 0;
 
         selectedCheckboxes.forEach(checkbox => {
-            const price = parseFloat(checkbox.dataset.price);
             const total = parseFloat(checkbox.dataset.total);
             const vat = parseFloat(checkbox.dataset.vat);
 
-            totalNet += price;
-            totalVat += (total - price);
+            // Net = total_price - vat (since total_price = price * quantity + vat)
+            totalNet += (total - vat);
+            totalVat += vat;
         });
 
         const grandTotal = totalNet + totalVat;
@@ -208,11 +219,13 @@
         const net = parseFloat(document.getElementById('summary-net').textContent);
         const vat = parseFloat(document.getElementById('summary-vat').textContent);
         const total = parseFloat(document.getElementById('summary-total').textContent);
+        const extraInfo = document.getElementById('extra_info').value;
 
         // Create form and submit
         const form = document.createElement('form');
         form.method = 'POST';
         form.action = '{{ route("invoices.generatePdf") }}';
+        form.target = '_blank'; // Open in new tab
 
         // Add CSRF token
         const csrfInput = document.createElement('input');
@@ -245,6 +258,15 @@
             input.value = field === 'net' ? net : field === 'vat' ? vat : total;
             form.appendChild(input);
         });
+
+        // Add extra info if provided
+        if (extraInfo) {
+            const extraInfoInput = document.createElement('input');
+            extraInfoInput.type = 'hidden';
+            extraInfoInput.name = 'extra_info';
+            extraInfoInput.value = extraInfo;
+            form.appendChild(extraInfoInput);
+        }
 
         document.body.appendChild(form);
         form.submit();

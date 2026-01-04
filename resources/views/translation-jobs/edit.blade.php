@@ -126,6 +126,14 @@
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-3"
                 required>
             @error('deadline') <span class="text-red-500">{{ $errors->first('deadline') }}</span> @enderror
+
+            <!-- Completed At -->
+            <div>
+                <label for="completed_at" class="block text-sm font-medium text-gray-700 mb-2">Completed At</label>
+                <input type="date" name="completed_at" id="completed_at" value="{{ old('completed_at', $translation_job->completed_at ? \Carbon\Carbon::parse($translation_job->completed_at)->format('Y-m-d') : '') }}"
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-3">
+                @error('completed_at') <span class="text-red-500">{{ $errors->first('completed_at') }}</span> @enderror
+            </div>
         </div>
     </div>
 
