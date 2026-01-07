@@ -1,7 +1,6 @@
 @extends('components.layout')
 
 @section('title', 'Charts')
-@section('page_title', 'Invoice Analytics')
 
 @section('content')
     <!-- Monthly Invoice Totals Bar Chart -->

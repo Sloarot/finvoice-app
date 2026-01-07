@@ -1,7 +1,6 @@
 @extends('components.layout')
 
 @section('title', 'Clients')
-@section('page_title', 'Clients Overview')
 
 @section('content')
     <x-table

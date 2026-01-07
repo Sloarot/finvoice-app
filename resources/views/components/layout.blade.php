@@ -10,7 +10,14 @@
     <div class="flex min-h-screen">
         <x-sidebar />
         <main class="flex-1 p-6">
-            <h1 class="text-2xl font-semibold text-[#702963] mb-4">@yield('page_title')</h1>
+            <div class="flex justify-end mb-4">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="bg-[#702963] text-white px-5 py-2 rounded-lg font-semibold hover:bg-[#8a3379] transition-colors">
+                        LOGOUT
+                    </button>
+                </form>
+            </div>
             <div class="bg-white shadow rounded-lg p-4">
                 @yield('content')
             </div>
