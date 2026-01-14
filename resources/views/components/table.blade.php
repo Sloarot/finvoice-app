@@ -13,8 +13,8 @@
     <tr>
         @foreach($row as $index => $cell)
             <td class="px-3 py-2">
-                @if($index === count($headers) - 1)
-                    {{-- Last column = Actions --}}
+                @if($index === count($headers) - 1 || $index === 5)
+                    {{-- Last column = Actions, Index 5 = Country (with flag) --}}
                     {!! $cell !!}
                 @else
                     {{ $cell }}

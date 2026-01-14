@@ -9,7 +9,13 @@ class TranslationJobController extends Controller
 {
     public function index()
     {
-        $jobs = TranslationJob::with('client')->latest()->paginate(10);
+        $jobs = TranslationJob::with('client')
+            ->where(function ($query) {
+                $query->whereNull('is_on_invoice')
+                    ->orWhere('is_on_invoice', false);
+            })
+            ->latest()
+            ->paginate(10);
         return view('translation-jobs.index', compact('jobs'));
     }
     /** * Show the form for creating a new translation job. */

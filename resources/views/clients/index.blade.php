@@ -5,15 +5,22 @@
 @section('content')
     <x-table
         :headers="['Client Name', 'Address', 'City', 'Contact Person', 'Invoice Email', 'Country', 'Actions']"
-        :rows="$clients->map(fn($client) => [
-            $client->client_name,
-            $client->client_address,
-            $client->city,
-            $client->contact_person,
-            $client->invoice_email,
-            $client->country,
-            view('clients.actions', ['client' => $client])->render()
-        ])"
+        :rows="$clients->map(function($client) {
+            $flagCode = $client->getCountryFlagCode();
+            $countryDisplay = $flagCode
+                ? '<span class=\'fi fi-' . $flagCode . '\' style=\'font-size: 2em;\'></span>'
+                : e($client->country);
+
+            return [
+                $client->client_name,
+                $client->client_address,
+                $client->city,
+                $client->contact_person,
+                $client->invoice_email,
+                $countryDisplay,
+                view('clients.actions', ['client' => $client])->render()
+            ];
+        })"
     />
 
     {{-- Pagination --}}
