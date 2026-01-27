@@ -1,0 +1,12 @@
+# Prevent Laravel from catching requests not meant for this project
+
+# This allows other projects in htdocs to work normally
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Only process requests that are specifically for the finvoice project
+    # Redirect all requests to the public directory
+    RewriteRule ^(.*)$ public/$1 [L]
+
+</IfModule>

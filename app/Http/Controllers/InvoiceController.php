@@ -57,7 +57,7 @@ class InvoiceController extends Controller
             TranslationJob::whereIn('id', $request->translation_jobs)
                 ->update([
                     'invoice_id' => $invoice->id,
-                    'is_on_invoice' => true,
+                    'is_on_invoice' => (int) str_replace('INV-', '', $invoice->invoice_number),
                 ]);
         }
 
