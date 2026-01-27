@@ -38,12 +38,11 @@ Route::middleware('guest')->group(function () {
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
         ->name('password.store');
-    // als nieuwe user nodig is: onderstaande routes ont commenten
-    // Registration routes disabled - single user system
-    // Route::get('register', [RegisteredUserController::class, 'create'])
-    //     ->name('register');
 
-    // Route::post('register', [RegisteredUserController::class, 'store']);
+    Route::get('register', [RegisteredUserController::class, 'create'])
+        ->name('register');
+
+    Route::post('register', [RegisteredUserController::class, 'store']);
 });
 
 Route::middleware('auth')->group(function () {

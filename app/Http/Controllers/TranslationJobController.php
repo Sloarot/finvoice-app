@@ -77,9 +77,9 @@ class TranslationJobController extends Controller
     /**
      * Remove the specified translation job from storage.
      */
-    public function destroy(TranslationJob $job)
+    public function destroy(TranslationJob $translation_job)
     {
-        $job->delete();
+        $translation_job->delete();
         return redirect()->route('translation-jobs.index')->with('success', 'Translation job deleted successfully!');
     }
 }

@@ -7,7 +7,8 @@
     <form action="{{ route('translation-jobs.destroy', $job) }}" method="POST" class="inline">
         @csrf
         @method('DELETE')
-        <button class="inline-flex items-center justify-center w-8 h-8 rounded bg-[#9b4d8f] text-white hover:bg-[#b05fa3] transition-colors">
+        <button type="submit" class="inline-flex items-center justify-center w-8 h-8 rounded bg-[#9b4d8f] text-white hover:bg-[#b05fa3] transition-colors"
+                onclick="return confirm('Are you sure you want to delete this translation job?')">
             <i class="fas fa-trash"></i>
         </button>
     </form>
