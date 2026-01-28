@@ -109,7 +109,7 @@
             <div>
                 <label for="quantity" class="block text-sm font-medium text-gray-700 mb-2">Quantity</label>
                 <div class="flex">
-                    <input type="number" name="quantity" id="quantity"
+                    <input type="number" step="0.01" name="quantity" id="quantity"
                         class="flex-1 rounded-l-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-3"
                         required>
                     <button type="button" id="min_fee"
