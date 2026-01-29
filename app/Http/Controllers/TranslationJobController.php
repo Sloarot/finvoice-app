@@ -28,7 +28,7 @@ class TranslationJobController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'po_number' => 'required|string|unique:translation_jobs,po_number',
+            'po_number' => 'required|string',
             'service' => 'required|string|max:255',
             'title' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
@@ -58,7 +58,7 @@ class TranslationJobController extends Controller
     public function update(Request $request, TranslationJob $translation_job)
     {
         $validated = $request->validate([
-            'po_number' => 'required|string|unique:translation_jobs,po_number,' . $translation_job->id,
+            'po_number' => 'required|string',
             'service' => 'required|string|max:255',
             'title' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
