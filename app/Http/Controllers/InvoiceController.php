@@ -57,7 +57,7 @@ class InvoiceController extends Controller
             TranslationJob::whereIn('id', $request->translation_jobs)
                 ->update([
                     'invoice_id' => $invoice->id,
-                    'is_on_invoice' => (int) str_replace('INV-', '', $invoice->invoice_number),
+                    'is_on_invoice' => (int) $invoice->invoice_number,
                 ]);
         }
 
@@ -123,7 +123,7 @@ class InvoiceController extends Controller
             TranslationJob::whereIn('id', $request->translation_jobs)
                 ->update([
                     'invoice_id' => $invoice->id,
-                    'is_on_invoice' => (int) str_replace('INV-', '', $invoice->invoice_number),
+                    'is_on_invoice' => (int) $invoice->invoice_number,
                 ]);
         }
 
@@ -225,20 +225,39 @@ class InvoiceController extends Controller
             ->orderBy('deadline')
             ->get();
 
-        // Generate invoice number (format: INV-YYYY-XXXX)
-        $year = now()->year;
-        $lastInvoice = Invoice::where('invoice_number', 'like', "INV-{$year}-%")
-            ->orderBy('invoice_number', 'desc')
-            ->first();
+        // Generate invoice number (format: 0537, 0538, 0539, etc.)
+        // RESET INVOICE NUMBERING: Change the $startingNumber value below to reset the invoice sequence.
+        // For example, to start from 0537, set: $startingNumber = 537;
+        // To start from 0001, set: $startingNumber = 1;
+        $startingNumber = 537;
+
+        $lastInvoice = Invoice::orderByRaw('CAST(invoice_number AS UNSIGNED) DESC')->first();
 
         if ($lastInvoice) {
-            $lastNumber = (int) substr($lastInvoice->invoice_number, -4);
-            $newNumber = str_pad($lastNumber + 1, 4, '0', STR_PAD_LEFT);
+            $lastNumber = (int) $lastInvoice->invoice_number;
+            $invoiceNumber = str_pad($lastNumber + 1, 4, '0', STR_PAD_LEFT);
         } else {
-            $newNumber = '0001';
+            // Use the starting number if no invoices exist
+            $invoiceNumber = str_pad($startingNumber, 4, '0', STR_PAD_LEFT);
         }
 
-        $invoiceNumber = "INV-{$year}-{$newNumber}";
+        // Create and save the invoice to the database
+        $invoice = Invoice::create([
+            'client_id' => $request->client_id,
+            'invoice_number' => $invoiceNumber,
+            'invoice_net' => $request->invoice_net,
+            'invoice_vat' => $request->invoice_vat,
+            'invoice_total' => $request->invoice_total,
+            'due_date' => now()->addDays(30), // Default 30 days from now, adjust as needed
+            'extra_info' => $request->extra_info,
+        ]);
+
+        // Update translation jobs to link them to this invoice
+        TranslationJob::whereIn('id', $request->translation_jobs)
+            ->update([
+                'invoice_id' => $invoice->id,
+                'is_on_invoice' => (int) $invoiceNumber,
+            ]);
 
         // Prepare data for PDF
         $data = [
