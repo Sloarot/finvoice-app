@@ -55,14 +55,6 @@
     "file": "assets/at-D-LsLSdx.svg",
     "src": "node_modules/flag-icons/flags/1x1/at.svg"
   },
-  "node_modules/flag-icons/flags/1x1/au.svg": {
-    "file": "assets/au-kL8f0uMB.svg",
-    "src": "node_modules/flag-icons/flags/1x1/au.svg"
-  },
-  "node_modules/flag-icons/flags/1x1/aw.svg": {
-    "file": "assets/aw-CLCX8uk5.svg",
-    "src": "node_modules/flag-icons/flags/1x1/aw.svg"
-  },
   "node_modules/flag-icons/flags/1x1/ax.svg": {
     "file": "assets/ax-wECm_RRW.svg",
     "src": "node_modules/flag-icons/flags/1x1/ax.svg"
@@ -70,10 +62,6 @@
   "node_modules/flag-icons/flags/1x1/az.svg": {
     "file": "assets/az-z2IthT8Q.svg",
     "src": "node_modules/flag-icons/flags/1x1/az.svg"
-  },
-  "node_modules/flag-icons/flags/1x1/ba.svg": {
-    "file": "assets/ba-CiiOt6u0.svg",
-    "src": "node_modules/flag-icons/flags/1x1/ba.svg"
   },
   "node_modules/flag-icons/flags/1x1/bb.svg": {
     "file": "assets/bb-DC5IaaX4.svg",
@@ -98,10 +86,6 @@
   "node_modules/flag-icons/flags/1x1/bh.svg": {
     "file": "assets/bh-DgfmyT2n.svg",
     "src": "node_modules/flag-icons/flags/1x1/bh.svg"
-  },
-  "node_modules/flag-icons/flags/1x1/bi.svg": {
-    "file": "assets/bi-C8Dazs_i.svg",
-    "src": "node_modules/flag-icons/flags/1x1/bi.svg"
   },
   "node_modules/flag-icons/flags/1x1/bj.svg": {
     "file": "assets/bj-BOF1aYv0.svg",
@@ -187,10 +171,6 @@
     "file": "assets/ci-Cn5asHD7.svg",
     "src": "node_modules/flag-icons/flags/1x1/ci.svg"
   },
-  "node_modules/flag-icons/flags/1x1/ck.svg": {
-    "file": "assets/ck-VjQ-vT4C.svg",
-    "src": "node_modules/flag-icons/flags/1x1/ck.svg"
-  },
   "node_modules/flag-icons/flags/1x1/cl.svg": {
     "file": "assets/cl-B2rf9gTF.svg",
     "src": "node_modules/flag-icons/flags/1x1/cl.svg"
@@ -218,10 +198,6 @@
   "node_modules/flag-icons/flags/1x1/cu.svg": {
     "file": "assets/cu-Bd4PmZCn.svg",
     "src": "node_modules/flag-icons/flags/1x1/cu.svg"
-  },
-  "node_modules/flag-icons/flags/1x1/cv.svg": {
-    "file": "assets/cv-BYvkBxIi.svg",
-    "src": "node_modules/flag-icons/flags/1x1/cv.svg"
   },
   "node_modules/flag-icons/flags/1x1/cw.svg": {
     "file": "assets/cw-DDrVSims.svg",
@@ -306,14 +282,6 @@
   "node_modules/flag-icons/flags/1x1/es.svg": {
     "file": "assets/es-BuSGTZm_.svg",
     "src": "node_modules/flag-icons/flags/1x1/es.svg"
-  },
-  "node_modules/flag-icons/flags/1x1/et.svg": {
-    "file": "assets/et-cfPInayI.svg",
-    "src": "node_modules/flag-icons/flags/1x1/et.svg"
-  },
-  "node_modules/flag-icons/flags/1x1/eu.svg": {
-    "file": "assets/eu-BE2G-Ars.svg",
-    "src": "node_modules/flag-icons/flags/1x1/eu.svg"
   },
   "node_modules/flag-icons/flags/1x1/fi.svg": {
     "file": "assets/fi-Brjq_KK6.svg",
@@ -435,14 +403,6 @@
     "file": "assets/hk-omO_-Nil.svg",
     "src": "node_modules/flag-icons/flags/1x1/hk.svg"
   },
-  "node_modules/flag-icons/flags/1x1/hm.svg": {
-    "file": "assets/hm-fgV6xItx.svg",
-    "src": "node_modules/flag-icons/flags/1x1/hm.svg"
-  },
-  "node_modules/flag-icons/flags/1x1/hn.svg": {
-    "file": "assets/hn-GhlpqqjC.svg",
-    "src": "node_modules/flag-icons/flags/1x1/hn.svg"
-  },
   "node_modules/flag-icons/flags/1x1/hr.svg": {
     "file": "assets/hr-BpiVVBoV.svg",
     "src": "node_modules/flag-icons/flags/1x1/hr.svg"
@@ -474,10 +434,6 @@
   "node_modules/flag-icons/flags/1x1/im.svg": {
     "file": "assets/im-Dd9p-0-T.svg",
     "src": "node_modules/flag-icons/flags/1x1/im.svg"
-  },
-  "node_modules/flag-icons/flags/1x1/in.svg": {
-    "file": "assets/in-BrINBvML.svg",
-    "src": "node_modules/flag-icons/flags/1x1/in.svg"
   },
   "node_modules/flag-icons/flags/1x1/io.svg": {
     "file": "assets/io-BImhNBcd.svg",
@@ -582,10 +538,6 @@
   "node_modules/flag-icons/flags/1x1/lr.svg": {
     "file": "assets/lr-Zj2ZOITC.svg",
     "src": "node_modules/flag-icons/flags/1x1/lr.svg"
-  },
-  "node_modules/flag-icons/flags/1x1/ls.svg": {
-    "file": "assets/ls-B-MSA_Nj.svg",
-    "src": "node_modules/flag-icons/flags/1x1/ls.svg"
   },
   "node_modules/flag-icons/flags/1x1/lt.svg": {
     "file": "assets/lt-CU4QmtZ-.svg",
@@ -738,10 +690,6 @@
   "node_modules/flag-icons/flags/1x1/nu.svg": {
     "file": "assets/nu-Dm-LLXct.svg",
     "src": "node_modules/flag-icons/flags/1x1/nu.svg"
-  },
-  "node_modules/flag-icons/flags/1x1/nz.svg": {
-    "file": "assets/nz-CaLnugvK.svg",
-    "src": "node_modules/flag-icons/flags/1x1/nz.svg"
   },
   "node_modules/flag-icons/flags/1x1/om.svg": {
     "file": "assets/om-nN8zP2Bu.svg",
@@ -935,10 +883,6 @@
     "file": "assets/td-Ddv_29rE.svg",
     "src": "node_modules/flag-icons/flags/1x1/td.svg"
   },
-  "node_modules/flag-icons/flags/1x1/tf.svg": {
-    "file": "assets/tf-DSn8VxE3.svg",
-    "src": "node_modules/flag-icons/flags/1x1/tf.svg"
-  },
   "node_modules/flag-icons/flags/1x1/tg.svg": {
     "file": "assets/tg-BpRxi4F-.svg",
     "src": "node_modules/flag-icons/flags/1x1/tg.svg"
@@ -946,10 +890,6 @@
   "node_modules/flag-icons/flags/1x1/th.svg": {
     "file": "assets/th-DK2zZyMY.svg",
     "src": "node_modules/flag-icons/flags/1x1/th.svg"
-  },
-  "node_modules/flag-icons/flags/1x1/tj.svg": {
-    "file": "assets/tj-BWWBVTk9.svg",
-    "src": "node_modules/flag-icons/flags/1x1/tj.svg"
   },
   "node_modules/flag-icons/flags/1x1/tk.svg": {
     "file": "assets/tk-CZEI6mqd.svg",
@@ -979,14 +919,6 @@
     "file": "assets/tt-f6m2xq_2.svg",
     "src": "node_modules/flag-icons/flags/1x1/tt.svg"
   },
-  "node_modules/flag-icons/flags/1x1/tv.svg": {
-    "file": "assets/tv-MqebyrVm.svg",
-    "src": "node_modules/flag-icons/flags/1x1/tv.svg"
-  },
-  "node_modules/flag-icons/flags/1x1/tw.svg": {
-    "file": "assets/tw-BGxVDCOL.svg",
-    "src": "node_modules/flag-icons/flags/1x1/tw.svg"
-  },
   "node_modules/flag-icons/flags/1x1/tz.svg": {
     "file": "assets/tz-BUVjlfC1.svg",
     "src": "node_modules/flag-icons/flags/1x1/tz.svg"
@@ -1011,14 +943,6 @@
     "file": "assets/us-DAM9Utrf.svg",
     "src": "node_modules/flag-icons/flags/1x1/us.svg"
   },
-  "node_modules/flag-icons/flags/1x1/uy.svg": {
-    "file": "assets/uy-B2Qs7aGx.svg",
-    "src": "node_modules/flag-icons/flags/1x1/uy.svg"
-  },
-  "node_modules/flag-icons/flags/1x1/uz.svg": {
-    "file": "assets/uz-rmSB_IKB.svg",
-    "src": "node_modules/flag-icons/flags/1x1/uz.svg"
-  },
   "node_modules/flag-icons/flags/1x1/va.svg": {
     "file": "assets/va-s7kyhqIM.svg",
     "src": "node_modules/flag-icons/flags/1x1/va.svg"
@@ -1026,10 +950,6 @@
   "node_modules/flag-icons/flags/1x1/vc.svg": {
     "file": "assets/vc-DaYqUZD4.svg",
     "src": "node_modules/flag-icons/flags/1x1/vc.svg"
-  },
-  "node_modules/flag-icons/flags/1x1/ve.svg": {
-    "file": "assets/ve-L4X6NQ3q.svg",
-    "src": "node_modules/flag-icons/flags/1x1/ve.svg"
   },
   "node_modules/flag-icons/flags/1x1/vg.svg": {
     "file": "assets/vg-ClZ-0KpG.svg",
@@ -1139,14 +1059,6 @@
     "file": "assets/at-DGA_6m5E.svg",
     "src": "node_modules/flag-icons/flags/4x3/at.svg"
   },
-  "node_modules/flag-icons/flags/4x3/au.svg": {
-    "file": "assets/au-DAHDIuPI.svg",
-    "src": "node_modules/flag-icons/flags/4x3/au.svg"
-  },
-  "node_modules/flag-icons/flags/4x3/aw.svg": {
-    "file": "assets/aw-W0PWLK5p.svg",
-    "src": "node_modules/flag-icons/flags/4x3/aw.svg"
-  },
   "node_modules/flag-icons/flags/4x3/ax.svg": {
     "file": "assets/ax-DvLIy84U.svg",
     "src": "node_modules/flag-icons/flags/4x3/ax.svg"
@@ -1154,10 +1066,6 @@
   "node_modules/flag-icons/flags/4x3/az.svg": {
     "file": "assets/az-Bk-bYNxy.svg",
     "src": "node_modules/flag-icons/flags/4x3/az.svg"
-  },
-  "node_modules/flag-icons/flags/4x3/ba.svg": {
-    "file": "assets/ba-WdDiSMvP.svg",
-    "src": "node_modules/flag-icons/flags/4x3/ba.svg"
   },
   "node_modules/flag-icons/flags/4x3/bb.svg": {
     "file": "assets/bb-DJxbaxmT.svg",
@@ -1182,10 +1090,6 @@
   "node_modules/flag-icons/flags/4x3/bh.svg": {
     "file": "assets/bh-BQqEGq6F.svg",
     "src": "node_modules/flag-icons/flags/4x3/bh.svg"
-  },
-  "node_modules/flag-icons/flags/4x3/bi.svg": {
-    "file": "assets/bi-CRmKY6RQ.svg",
-    "src": "node_modules/flag-icons/flags/4x3/bi.svg"
   },
   "node_modules/flag-icons/flags/4x3/bj.svg": {
     "file": "assets/bj-14PhO9bM.svg",
@@ -1271,10 +1175,6 @@
     "file": "assets/ci-C8Q8IYTn.svg",
     "src": "node_modules/flag-icons/flags/4x3/ci.svg"
   },
-  "node_modules/flag-icons/flags/4x3/ck.svg": {
-    "file": "assets/ck-DfXMUOTo.svg",
-    "src": "node_modules/flag-icons/flags/4x3/ck.svg"
-  },
   "node_modules/flag-icons/flags/4x3/cl.svg": {
     "file": "assets/cl-BgYYb4qP.svg",
     "src": "node_modules/flag-icons/flags/4x3/cl.svg"
@@ -1302,10 +1202,6 @@
   "node_modules/flag-icons/flags/4x3/cu.svg": {
     "file": "assets/cu-L6XVZNgo.svg",
     "src": "node_modules/flag-icons/flags/4x3/cu.svg"
-  },
-  "node_modules/flag-icons/flags/4x3/cv.svg": {
-    "file": "assets/cv-CPsfcOfk.svg",
-    "src": "node_modules/flag-icons/flags/4x3/cv.svg"
   },
   "node_modules/flag-icons/flags/4x3/cw.svg": {
     "file": "assets/cw-BbrnximR.svg",
@@ -1390,14 +1286,6 @@
   "node_modules/flag-icons/flags/4x3/es.svg": {
     "file": "assets/es-d5m8M5h8.svg",
     "src": "node_modules/flag-icons/flags/4x3/es.svg"
-  },
-  "node_modules/flag-icons/flags/4x3/et.svg": {
-    "file": "assets/et-DwdlzOIx.svg",
-    "src": "node_modules/flag-icons/flags/4x3/et.svg"
-  },
-  "node_modules/flag-icons/flags/4x3/eu.svg": {
-    "file": "assets/eu-Brdgz8ab.svg",
-    "src": "node_modules/flag-icons/flags/4x3/eu.svg"
   },
   "node_modules/flag-icons/flags/4x3/fi.svg": {
     "file": "assets/fi-DWUIkfjL.svg",
@@ -1519,14 +1407,6 @@
     "file": "assets/hk-CUNIaSX0.svg",
     "src": "node_modules/flag-icons/flags/4x3/hk.svg"
   },
-  "node_modules/flag-icons/flags/4x3/hm.svg": {
-    "file": "assets/hm-Dh6t_Tj3.svg",
-    "src": "node_modules/flag-icons/flags/4x3/hm.svg"
-  },
-  "node_modules/flag-icons/flags/4x3/hn.svg": {
-    "file": "assets/hn-CRjyS_bm.svg",
-    "src": "node_modules/flag-icons/flags/4x3/hn.svg"
-  },
   "node_modules/flag-icons/flags/4x3/hr.svg": {
     "file": "assets/hr-fzLfaANM.svg",
     "src": "node_modules/flag-icons/flags/4x3/hr.svg"
@@ -1559,10 +1439,6 @@
     "file": "assets/im--VPIqfkF.svg",
     "src": "node_modules/flag-icons/flags/4x3/im.svg"
   },
-  "node_modules/flag-icons/flags/4x3/in.svg": {
-    "file": "assets/in-Cdwu6Bq7.svg",
-    "src": "node_modules/flag-icons/flags/4x3/in.svg"
-  },
   "node_modules/flag-icons/flags/4x3/io.svg": {
     "file": "assets/io-13HOfeJD.svg",
     "src": "node_modules/flag-icons/flags/4x3/io.svg"
@@ -1570,10 +1446,6 @@
   "node_modules/flag-icons/flags/4x3/iq.svg": {
     "file": "assets/iq-Dp8HDzo2.svg",
     "src": "node_modules/flag-icons/flags/4x3/iq.svg"
-  },
-  "node_modules/flag-icons/flags/4x3/ir.svg": {
-    "file": "assets/ir-cCIgaNf6.svg",
-    "src": "node_modules/flag-icons/flags/4x3/ir.svg"
   },
   "node_modules/flag-icons/flags/4x3/is.svg": {
     "file": "assets/is-CZjefTNV.svg",
@@ -1599,10 +1471,6 @@
     "file": "assets/jp-BIMmfxpO.svg",
     "src": "node_modules/flag-icons/flags/4x3/jp.svg"
   },
-  "node_modules/flag-icons/flags/4x3/ke.svg": {
-    "file": "assets/ke-C8foqndp.svg",
-    "src": "node_modules/flag-icons/flags/4x3/ke.svg"
-  },
   "node_modules/flag-icons/flags/4x3/kg.svg": {
     "file": "assets/kg-B0FsxZiL.svg",
     "src": "node_modules/flag-icons/flags/4x3/kg.svg"
@@ -1615,10 +1483,6 @@
     "file": "assets/ki-p_fAQGbS.svg",
     "src": "node_modules/flag-icons/flags/4x3/ki.svg"
   },
-  "node_modules/flag-icons/flags/4x3/km.svg": {
-    "file": "assets/km-B5tqtGG7.svg",
-    "src": "node_modules/flag-icons/flags/4x3/km.svg"
-  },
   "node_modules/flag-icons/flags/4x3/kn.svg": {
     "file": "assets/kn-DVPxDkNY.svg",
     "src": "node_modules/flag-icons/flags/4x3/kn.svg"
@@ -1626,10 +1490,6 @@
   "node_modules/flag-icons/flags/4x3/kp.svg": {
     "file": "assets/kp-CrDKzoxe.svg",
     "src": "node_modules/flag-icons/flags/4x3/kp.svg"
-  },
-  "node_modules/flag-icons/flags/4x3/kr.svg": {
-    "file": "assets/kr-BCXH1Hao.svg",
-    "src": "node_modules/flag-icons/flags/4x3/kr.svg"
   },
   "node_modules/flag-icons/flags/4x3/kw.svg": {
     "file": "assets/kw-fSBzmd30.svg",
@@ -1666,10 +1526,6 @@
   "node_modules/flag-icons/flags/4x3/lr.svg": {
     "file": "assets/lr-B84vu3Ds.svg",
     "src": "node_modules/flag-icons/flags/4x3/lr.svg"
-  },
-  "node_modules/flag-icons/flags/4x3/ls.svg": {
-    "file": "assets/ls-5Xk3Mxq5.svg",
-    "src": "node_modules/flag-icons/flags/4x3/ls.svg"
   },
   "node_modules/flag-icons/flags/4x3/lt.svg": {
     "file": "assets/lt-DoukV-Sm.svg",
@@ -1822,10 +1678,6 @@
   "node_modules/flag-icons/flags/4x3/nu.svg": {
     "file": "assets/nu-BfgWvGcd.svg",
     "src": "node_modules/flag-icons/flags/4x3/nu.svg"
-  },
-  "node_modules/flag-icons/flags/4x3/nz.svg": {
-    "file": "assets/nz-5vODdBjz.svg",
-    "src": "node_modules/flag-icons/flags/4x3/nz.svg"
   },
   "node_modules/flag-icons/flags/4x3/om.svg": {
     "file": "assets/om-DcqxRdQL.svg",
@@ -2019,10 +1871,6 @@
     "file": "assets/td-BsuVhZpT.svg",
     "src": "node_modules/flag-icons/flags/4x3/td.svg"
   },
-  "node_modules/flag-icons/flags/4x3/tf.svg": {
-    "file": "assets/tf-Co33RhQH.svg",
-    "src": "node_modules/flag-icons/flags/4x3/tf.svg"
-  },
   "node_modules/flag-icons/flags/4x3/tg.svg": {
     "file": "assets/tg-CP1-sc35.svg",
     "src": "node_modules/flag-icons/flags/4x3/tg.svg"
@@ -2063,14 +1911,6 @@
     "file": "assets/tt-CTnr7aY5.svg",
     "src": "node_modules/flag-icons/flags/4x3/tt.svg"
   },
-  "node_modules/flag-icons/flags/4x3/tv.svg": {
-    "file": "assets/tv-DDqkVT-n.svg",
-    "src": "node_modules/flag-icons/flags/4x3/tv.svg"
-  },
-  "node_modules/flag-icons/flags/4x3/tw.svg": {
-    "file": "assets/tw-d-Mf-0VT.svg",
-    "src": "node_modules/flag-icons/flags/4x3/tw.svg"
-  },
   "node_modules/flag-icons/flags/4x3/tz.svg": {
     "file": "assets/tz-BjLtHeil.svg",
     "src": "node_modules/flag-icons/flags/4x3/tz.svg"
@@ -2095,14 +1935,6 @@
     "file": "assets/us-C73uVeEr.svg",
     "src": "node_modules/flag-icons/flags/4x3/us.svg"
   },
-  "node_modules/flag-icons/flags/4x3/uy.svg": {
-    "file": "assets/uy-DD6peej-.svg",
-    "src": "node_modules/flag-icons/flags/4x3/uy.svg"
-  },
-  "node_modules/flag-icons/flags/4x3/uz.svg": {
-    "file": "assets/uz-C2f-Cubn.svg",
-    "src": "node_modules/flag-icons/flags/4x3/uz.svg"
-  },
   "node_modules/flag-icons/flags/4x3/va.svg": {
     "file": "assets/va-B9-hqIE-.svg",
     "src": "node_modules/flag-icons/flags/4x3/va.svg"
@@ -2110,10 +1942,6 @@
   "node_modules/flag-icons/flags/4x3/vc.svg": {
     "file": "assets/vc-COpmFovN.svg",
     "src": "node_modules/flag-icons/flags/4x3/vc.svg"
-  },
-  "node_modules/flag-icons/flags/4x3/ve.svg": {
-    "file": "assets/ve-BSqnIB9l.svg",
-    "src": "node_modules/flag-icons/flags/4x3/ve.svg"
   },
   "node_modules/flag-icons/flags/4x3/vg.svg": {
     "file": "assets/vg-C7xY6pic.svg",
@@ -2168,7 +1996,7 @@
     "src": "node_modules/flag-icons/flags/4x3/zw.svg"
   },
   "resources/css/app.css": {
-    "file": "assets/app-W4ZbWjhY.css",
+    "file": "assets/app-D7ev099W.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
