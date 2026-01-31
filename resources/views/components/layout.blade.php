@@ -10,7 +10,10 @@
     <div class="flex min-h-screen">
         <x-sidebar />
         <main class="flex-1 p-6">
-            <div class="flex justify-end mb-4">
+            <div class="flex justify-between items-center mb-4">
+                <div>
+                    @yield('header-left')
+                </div>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit" class="bg-[#702963] text-white px-5 py-2 rounded-lg font-semibold hover:bg-[#8a3379] transition-colors">

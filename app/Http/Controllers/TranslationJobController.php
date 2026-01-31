@@ -16,7 +16,13 @@ class TranslationJobController extends Controller
             })
             ->latest()
             ->paginate(10);
-        return view('translation-jobs.index', compact('jobs'));
+
+        // Calculate total for current month
+        $monthlyTotal = TranslationJob::whereMonth('created_at', now()->month)
+            ->whereYear('created_at', now()->year)
+            ->sum('total_price');
+
+        return view('translation-jobs.index', compact('jobs', 'monthlyTotal'));
     }
     /** * Show the form for creating a new translation job. */
     public function create()
