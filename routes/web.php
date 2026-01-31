@@ -83,11 +83,11 @@ Route::get('/api/charts/yearly-total', [ChartController::class, 'yearlyTotal'])-
 Route::get('/api/charts/top-clients', [ChartController::class, 'topClients'])->name('api.charts.clients')->middleware('auth');
 
 // Invoice routes with custom preview and PDF generation
-Route::get('invoices/preview', [InvoiceController::class, 'preview'])->name('invoices.preview');
+Route::get('invoices/preview', [InvoiceController::class, 'preview'])->name('invoices.preview')->middleware('auth');
 // Route::get('invoices/pdf-preview', [InvoiceController::class, 'pdfPreview'])->name('invoices.pdfPreview');
 Route::get('/invoice-preview/{id}', function ($id) {
     $invoice = Invoice::with('translationJobs')->findOrFail($id);
     return view('invoices.preview', compact('invoice'));
-});
-Route::post('invoices/generate-pdf', [InvoiceController::class, 'generatePdf'])->name('invoices.generatePdf');
-Route::resource('invoices', InvoiceController::class);
+})->middleware('auth');
+Route::post('invoices/generate-pdf', [InvoiceController::class, 'generatePdf'])->name('invoices.generatePdf')->middleware('auth');
+Route::resource('invoices', InvoiceController::class)->middleware('auth');
