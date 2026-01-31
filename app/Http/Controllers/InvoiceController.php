@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Invoice;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use App\Models\Client;
-use App\Models\TranslationJob;
+use App\Models\Invoice;
 use Illuminate\Http\Request;
+use App\Models\TranslationJob;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class InvoiceController extends Controller
@@ -219,72 +221,99 @@ class InvoiceController extends Controller
             'extra_info' => 'nullable|string',
         ]);
 
-        // Get client and translation jobs
-        $client = Client::findOrFail($request->client_id);
-        $translationJobs = TranslationJob::whereIn('id', $request->translation_jobs)
-            ->orderBy('deadline')
-            ->get();
+        try {
+            DB::beginTransaction();
 
-        // Generate invoice number (format: 0537, 0538, 0539, etc.)
-        // RESET INVOICE NUMBERING: Change the $startingNumber value below to reset the invoice sequence.
-        // For example, to start from 0537, set: $startingNumber = 537;
-        // To start from 0001, set: $startingNumber = 1;
-        $startingNumber = 537;
+            // Get client and translation jobs
+            $client = Client::findOrFail($request->client_id);
+            $translationJobs = TranslationJob::whereIn('id', $request->translation_jobs)
+                ->orderBy('deadline')
+                ->get();
 
-        $lastInvoice = Invoice::orderByRaw('CAST(invoice_number AS UNSIGNED) DESC')->first();
+            // Generate invoice number (format: 0537, 0538, 0539, etc.)
+            $startingNumber = 537;
 
-        if ($lastInvoice) {
-            $lastNumber = (int) $lastInvoice->invoice_number;
-            $invoiceNumber = str_pad($lastNumber + 1, 4, '0', STR_PAD_LEFT);
-        } else {
-            // Use the starting number if no invoices exist
-            $invoiceNumber = str_pad($startingNumber, 4, '0', STR_PAD_LEFT);
-        }
+            $lastInvoice = Invoice::orderByRaw('CAST(invoice_number AS UNSIGNED) DESC')->first();
 
-        // Create and save the invoice to the database
-        $invoice = Invoice::create([
-            'client_id' => $request->client_id,
-            'invoice_number' => $invoiceNumber,
-            'invoice_net' => $request->invoice_net,
-            'invoice_vat' => $request->invoice_vat,
-            'invoice_total' => $request->invoice_total,
-            'due_date' => now()->addDays(30), // Default 30 days from now, adjust as needed
-            'extra_info' => $request->extra_info,
-        ]);
+            if ($lastInvoice) {
+                $lastNumber = (int) $lastInvoice->invoice_number;
+                $invoiceNumber = str_pad($lastNumber + 1, 4, '0', STR_PAD_LEFT);
+            } else {
+                $invoiceNumber = str_pad($startingNumber, 4, '0', STR_PAD_LEFT);
+            }
 
-        // Update translation jobs to link them to this invoice
-        TranslationJob::whereIn('id', $request->translation_jobs)
-            ->update([
-                'invoice_id' => $invoice->id,
-                'is_on_invoice' => (int) $invoiceNumber,
+            // Create and save the invoice to the database
+            $invoice = Invoice::create([
+                'client_id' => $request->client_id,
+                'invoice_number' => $invoiceNumber,
+                'invoice_net' => $request->invoice_net,
+                'invoice_vat' => $request->invoice_vat,
+                'invoice_total' => $request->invoice_total,
+                'due_date' => now()->addDays(30),
+                'extra_info' => $request->extra_info,
             ]);
 
-        // Prepare data for PDF
-        $data = [
+            // Update translation jobs to link them to this invoice
+            TranslationJob::whereIn('id', $request->translation_jobs)
+                ->update([
+                    'invoice_id' => $invoice->id,
+                    'is_on_invoice' => (int) $invoiceNumber,
+                ]);
+
+            // Prepare data for PDF
+            $data = [
+                'client' => $client,
+                'translationJobs' => $translationJobs,
+                'invoiceNumber' => $invoiceNumber,
+                'invoiceNet' => $request->invoice_net,
+                'invoiceVat' => $request->invoice_vat,
+                'invoiceTotal' => $request->invoice_total,
+                'extraInfo' => $request->extra_info ?? null,
+            ];
+
+            // Generate PDF
+            $pdf = Pdf::loadView('invoices.pdf', $data);
+            $pdf->setPaper('A4', 'portrait');
+
+            // Set options for better rendering
+            $pdf->setOptions([
+                'isHtml5ParserEnabled' => true,
+                'isRemoteEnabled' => true,
+                'defaultFont' => 'DejaVu Sans',
+            ]);
+
+            DB::commit();
+
+            // Display PDF in browser (inline = opens in new tab instead of download)
+            return response($pdf->output(), 200, [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'inline; filename="invoice_' . $invoiceNumber . '.pdf"',
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            // Log the error
+            Log::error('Invoice generation failed: ' . $e->getMessage());
+
+            return redirect()->route('invoices.preview')
+                ->with('error', 'Invoice generation failed: ' . $e->getMessage());
+        }
+    }
+    public function regeneratePdf(Invoice $invoice)
+    {
+        $client = $invoice->client;
+        $translationJobs = $invoice->translationJobs;
+
+        $pdf = Pdf::loadView('invoices.pdf', [
+            'invoiceNumber' => $invoice->invoice_number,
             'client' => $client,
             'translationJobs' => $translationJobs,
-            'invoiceNumber' => $invoiceNumber,
-            'invoiceNet' => $request->invoice_net,
-            'invoiceVat' => $request->invoice_vat,
-            'invoiceTotal' => $request->invoice_total,
-            'extraInfo' => $request->extra_info ?? null,
-        ];
+            'invoiceNet' => $invoice->invoice_net,      // ✓ Correct column name
+            'invoiceVat' => $invoice->invoice_vat,      // ✓ Correct column name
+            'invoiceTotal' => $invoice->invoice_total,  // ✓ Correct column name
+            'extraInfo' => $invoice->extra_info
+        ])->setPaper('a4', 'portrait');
 
-        // Generate PDF
-        $pdf = Pdf::loadView('invoices.pdf', $data);
-        $pdf->setPaper('A4', 'portrait');
-
-        // Set options for better rendering
-        $pdf->setOptions([
-            'isHtml5ParserEnabled' => true,
-            'isRemoteEnabled' => true,
-            'defaultFont' => 'DejaVu Sans',
-        ]);
-
-        // Display PDF in browser (inline = opens in new tab instead of download)
-        return response($pdf->output(), 200, [
-            'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'inline; filename="invoice_' . $invoiceNumber . '.pdf"',
-        ]);
+        return $pdf->download("invoice-{$invoice->invoice_number}.pdf");
     }
 }
