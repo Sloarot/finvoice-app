@@ -1,10 +1,21 @@
-@props(['headers', 'rows'])
+@props(['headers', 'rows', 'sortable' => []])
 
-<table class="w-full table-auto border-collapse">
+<table class="w-full table-auto border-collapse" id="sortable-table">
     <thead class="bg-[#702963] text-white">
         <tr>
-            @foreach($headers as $header)
-                <th class="p-3 text-left">{{ $header }}</th>
+            @foreach($headers as $index => $header)
+                <th class="p-3 text-left {{ in_array($index, $sortable) ? 'cursor-pointer select-none hover:bg-[#8a3477] transition-colors' : '' }}"
+                    @if(in_array($index, $sortable)) data-sort-index="{{ $index }}" @endif>
+                    <div class="flex items-center gap-2">
+                        <span>{{ $header }}</span>
+                        @if(in_array($index, $sortable))
+                            <div class="flex flex-col text-xs leading-none">
+                                <span class="sort-arrow sort-asc opacity-30">▲</span>
+                                <span class="sort-arrow sort-desc opacity-30">▼</span>
+                            </div>
+                        @endif
+                    </div>
+                </th>
             @endforeach
         </tr>
     </thead>
@@ -25,3 +36,4 @@
 @endforeach
     </tbody>
 </table>
+
