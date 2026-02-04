@@ -91,3 +91,6 @@ Route::get('/invoice-preview/{id}', function ($id) {
 })->middleware('auth');
 Route::post('invoices/generate-pdf', [InvoiceController::class, 'generatePdf'])->name('invoices.generatePdf')->middleware('auth');
 Route::resource('invoices', InvoiceController::class)->middleware('auth');
+
+// ...regenerate pdf
+Route::get('/invoices/{invoice}/regenerate-pdf', [InvoiceController::class, 'regeneratePdf'])->name('invoices.regenerate-pdf')->middleware('auth');

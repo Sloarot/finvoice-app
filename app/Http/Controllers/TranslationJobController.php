@@ -15,7 +15,7 @@ class TranslationJobController extends Controller
                     ->orWhere('is_on_invoice', false);
             })
             ->latest()
-            ->paginate(10);
+            ->paginate(25);
 
         // Calculate total for current month
         $monthlyTotal = TranslationJob::whereMonth('created_at', now()->month)
