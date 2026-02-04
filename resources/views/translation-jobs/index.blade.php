@@ -3,7 +3,7 @@
 @section('title', 'Translation Jobs')
 
 @section('header-left')
-    <div class="border-2 border-[#702963] text-gray-900 px-5 py-2 rounded-lg font-semibold">
+    <div class="text-gray-900 px-5 py-2 font-semibold">
         <span class="text-sm uppercase text-[#702963]">Total Jobs This Month:</span>
         <span class="text-xl ml-2 text-[#702963]">€{{ number_format($monthlyTotal, 2) }}</span>
     </div>
