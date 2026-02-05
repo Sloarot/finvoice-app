@@ -84,6 +84,7 @@
         <!-- Actions -->
         <div class="flex justify-end space-x-4 pt-6 border-t">
             <a href="{{ route('invoices.index') }}" class="bg-gray-500 text-white px-6 py-2 rounded hover:bg-gray-600">Back to List</a>
+            <a href="{{ route('invoices.regenerate-pdf', $invoice) }}" class="bg-[#702963] text-white px-6 py-2 rounded hover:bg-[#5a1f4f]">Regenerate PDF</a>
             <a href="{{ route('invoices.edit', $invoice) }}" class="bg-yellow-500 text-white px-6 py-2 rounded hover:bg-yellow-600">Edit Invoice</a>
             <form action="{{ route('invoices.destroy', $invoice) }}" method="POST" class="inline">
                 @csrf
