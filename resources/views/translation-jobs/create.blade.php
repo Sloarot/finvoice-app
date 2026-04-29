@@ -44,16 +44,6 @@
         @error('service') <span class="text-red-500">{{ $errors->first('service') }}</span> @enderror
     </div>
 
-     <!-- PO Number -->
-    <div>
-        <label for="po_number" class="block text-sm font-medium text-gray-700 mb-2">PO Number</label>
-        <input type="text" name="po_number" id="po_number"
-            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-4"
-            required>
-        @error('po_number') <span class="text-red-500">{{ $errors->first('po_number') }}</span> @enderror
-    </div>
-
-
     <!-- Title -->
     <div>
         <label for="title" class="block text-sm font-medium text-gray-700 mb-2">Job Title</label>
@@ -61,6 +51,15 @@
             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-4"
             required>
         @error('title') <span class="text-red-500">{{ $errors->first('title') }}</span> @enderror
+    </div>
+
+     <!-- PO Number -->
+    <div>
+        <label for="po_number" class="block text-sm font-medium text-gray-700 mb-2">PO Number</label>
+        <input type="text" name="po_number" id="po_number"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-4"
+            required>
+        @error('po_number') <span class="text-red-500">{{ $errors->first('po_number') }}</span> @enderror
     </div>
 
     <!-- Pricing and Deadline Section -->
