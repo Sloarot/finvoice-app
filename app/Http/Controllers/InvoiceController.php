@@ -285,9 +285,10 @@ class InvoiceController extends Controller
             DB::commit();
 
             // Display PDF in browser (inline = opens in new tab instead of download)
+            $filename = $invoiceNumber . ' (' . $client->client_name . ').pdf';
             return response($pdf->output(), 200, [
                 'Content-Type' => 'application/pdf',
-                'Content-Disposition' => 'inline; filename="invoice_' . $invoiceNumber . '.pdf"',
+                'Content-Disposition' => 'inline; filename="' . $filename . '"',
             ]);
         } catch (\Exception $e) {
             DB::rollBack();
@@ -314,6 +315,6 @@ class InvoiceController extends Controller
             'extraInfo' => $invoice->extra_info
         ])->setPaper('a4', 'portrait');
 
-        return $pdf->download("invoice-{$invoice->invoice_number}.pdf");
+        return $pdf->download("{$invoice->invoice_number} ({$client->client_name}).pdf");
     }
 }

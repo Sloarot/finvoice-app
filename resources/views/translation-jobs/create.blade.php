@@ -285,7 +285,7 @@
                 </select>
             </div>
             <div>
-                <label for="result" class="block text-sm font-medium text-gray-700 mb-2">Total Price (€)</label>
+                <label for="result" class="block text-sm font-medium text-gray-700 mb-2">Number of words</label>
                 <input type="number" step="0.01" id="result" readonly
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-gray-50 p-4">
             </div>
@@ -304,6 +304,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const rate = parseFloat(rateSelect.value);
         const total = amount / rate;
         resultInput.value = total.toFixed(2);
+        document.getElementById('quantity').value = total.toFixed(2);
+        calculateJobTotal();
     }
 
     PoInput.addEventListener('input', calculate);
