@@ -45,6 +45,16 @@ class TranslationJobController extends Controller
             'client_id' => 'required|exists:clients,id',
         ]);
 
+        // The `vat` column is NOT NULL with a DB-level default of 0 (see the
+        // translation_jobs migration), but the validation rule above is
+        // `nullable` — leaving the field blank passes validation as `null`,
+        // which then fails at the DATABASE level with an uncaught
+        // "Column 'vat' cannot be null" query exception instead of the
+        // normal inline @error() message. Coalescing here treats a blank
+        // VAT field as 0, matching both the DB default and the form's own
+        // pre-filled "0" value.
+        $validated['vat'] ??= 0;
+
         TranslationJob::create($validated);
         return redirect()->route('translation-jobs.index')->with('success', 'Translation job created successfully!');
     }
@@ -75,6 +85,10 @@ class TranslationJobController extends Controller
             'completed_at' => 'nullable|date',
             'client_id' => 'required|exists:clients,id',
         ]);
+
+        // Same "blank VAT means 0" coalescing as store() above — see the
+        // comment there.
+        $validated['vat'] ??= 0;
 
         $translation_job->update($validated);
         return redirect()->route('translation-jobs.index')->with('success', 'Translation job updated successfully!');
