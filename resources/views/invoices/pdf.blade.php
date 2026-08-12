@@ -289,8 +289,8 @@
             <div class="from-address">
                 <div class="address-label">From:</div>
                 <div class="address-line">FINTRASC LTD</div>
-                <div class="address-line">Maria Louisa Blvd 45</div>
-                <div class="address-line">1202 Sofia</div>
+                <div class="address-line">37, William Gladstone str.</div>
+                <div class="address-line">1000 Sofia, Bulgaria</div>
                 <div class="address-line">+359(0)8 998 624 65</div>
                 <div class="address-line">E-mail: contact@fintrasc.be</div>
                 <div class="address-line">VAT: BG204137289</div>
